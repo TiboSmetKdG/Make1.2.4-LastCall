@@ -41,7 +41,7 @@ __status__ = "Development"
 # Function that will give you information about your CPU en RAM usage.
 def get_system_info():
     cpu_perc = psutil.cpu_percent()                         # Gets CPU usage in percent
-    cpu_freq = psutil.cpu_freq()                            # Gets CPU frequency
+    cpu_freq = psutil.cpu_freq(percpu=True)                 # Gets CPU frequency
     ram = psutil.virtual_memory()                           # Get info about RAM
     ram_use = str(round(ram.used / (1024. ** 3), 2))        # Gets used RAM
     ram_tot = str(round(ram.total / (1024. ** 3), 2))       # Gets total RAM
@@ -77,6 +77,7 @@ def get_system_update():
 def get_date_and_time():
     moment = ""
 
+    # Gets the info about today and seperates it in various different variables
     today = datetime.datetime.now()
     weekday = today.strftime("%A")
     day = today.strftime("%d")
@@ -85,6 +86,7 @@ def get_date_and_time():
     hour = today.strftime("%H")
     minutes = today.strftime("%M")
 
+    # Says a message depending on what time it is.
     if int(hour) < 6:
         moment = "night"
     elif int(hour) < 12:

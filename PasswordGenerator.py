@@ -2,10 +2,7 @@
 
 """
             ／￣￣￣￣￣￣￣￣
-　　　　　　  |　Een python script dat random wachtwoorden genereert.
-　　　　　　  |　  - zowel kleine letters als grote, cijfers en tekens
-　　　　　　  |　  - op aanvraag de complexiteit (aantal tekens en soort tekens)
-　　　　　　  |　  - maak gebruik van flowcontrol en functies!
+　　　　　　  |　A python script that will generate a random password.
 　　　　　　  ＼＿＿　＿＿＿＿＿＿＿
 　　　　　　　　　  ∨
             ██████████  ████
@@ -48,6 +45,7 @@ def generate_password(leng, get, up, low, spec):
 
     character_list = [UPPERCASE, LOWERCASE, NUMBERS, PUNCTUATION]
 
+    # Checks the choises of the user and adds characters when needed
     if get:
         ww = ww + character_list[0][random.randint(0, len(NUMBERS) - 1)]
     if up:
@@ -57,6 +55,7 @@ def generate_password(leng, get, up, low, spec):
     if spec:
         ww = ww + character_list[0][random.randint(0, len(PUNCTUATION) - 1)]
 
+    # this will add characters until the desired length is reached
     i = 0
     while i < leng - len(ww):
         index = random.randint(0, 3)
@@ -65,25 +64,26 @@ def generate_password(leng, get, up, low, spec):
 
 
 def main():
-    print("Wachtwoord generator:")
+    print("Password generator:")
 
-    print("Hoe lang moet het wachtwoord zijn?")
-    lengte = int(input())
+    # Asks the user what characters they need in their password
+    print("How long should your password be?")
+    length = int(input())
 
-    print("Moet het wachtwoord getallen bevatten? (0 = neen / 1 = ja) ")
-    getal = bool(input())
+    print("Should it contail numbers? (yes = 1 / no = 0)")
+    num = bool(input())
 
-    print("Moet het wachtwoord hoofdletters bevatten? (0 = neen / 1 = ja) ")
+    print("Should it contail upper case letters? (yes = 1 / no = 0)")
     upper = bool(input())
 
-    print("Moet het wachtwoord kleine letters bevatten? (0 = neen / 1 = ja) ")
+    print("Should it contail lower case letters? (yes = 1 / no = 0)")
     lower = bool(input())
 
-    print("Moet het wachtwoord speciale tekens bevatten? (0 = neen / 1 = ja) ")
-    specials = bool(input())
+    print("Should it contail special characters? (yes = 1 / no = 0)")
+    spec = bool(input())
 
-    wachtwoord = generate_password(lengte, getal, upper, lower, specials)
-    print("Je wachtwoord is:", wachtwoord)
+    password = generate_password(length, num, upper, lower, spec)
+    print("Your password is:", password)
 
 
 if __name__ == '__main__':
